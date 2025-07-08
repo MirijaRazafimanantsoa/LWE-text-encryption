@@ -2,8 +2,12 @@ import sys
 import json
 import os
 import ast
+from PyQt6.QtWidgets import (
+    QDialog, QVBoxLayout, QLabel, QLineEdit, QCheckBox, QDialogButtonBox
+)
+
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QFileDialog, QLineEdit, QMessageBox, QLabel, QInputDialog, QHBoxLayout
-from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QRect
+from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QRect, Qt
 from lwe import LWE
 
 class LWEEncryptor(QWidget):
@@ -17,32 +21,76 @@ class LWEEncryptor(QWidget):
         self.setWindowTitle('LWE Encryptor')
         self.setGeometry(100, 100, 500, 250)
         self.setStyleSheet("""
-            QWidget {
-                background-color: #2b2b2b;
-                color: #ffffff;
-            }
-            QPushButton {
-                background-color: #3c3c3c;
-                color: #ffffff;
-                border: 1px solid #555555;
-                border-radius: 5px;
-                padding: 10px;
-            }
-            QPushButton:hover {
-                background-color: #4d4d4d;
-            }
-            QLineEdit {
-                background-color: #3c3c3c;
-                color: #ffffff;
-                padding: 5px;
-                border: 1px solid #555555;
-                border-radius: 5px;
-            }
-            QLabel {
-                font-size: 14px;
-                color: #ffffff;
-            }
-        """)
+    QWidget {
+        background-color: #2b2b2b;
+        color: #e0e0e0;
+        font-family: Segoe UI, Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    QLabel {
+        color: #f0f0f0;
+        font-size: 14px;
+    }
+
+    QPushButton {
+        background: qlineargradient(
+            x1:0, y1:0, x2:0, y2:1,
+            stop:0 #4a90e2,
+            stop:1 #357ab8
+        );
+        color: #ffffff;
+        border: 1px solid #27527a;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-weight: 500;
+    }
+
+    QPushButton:hover {
+        background: qlineargradient(
+            x1:0, y1:0, x2:0, y2:1,
+            stop:0 #5aa0f2,
+            stop:1 #3a85c0
+        );
+    }
+
+    QPushButton:pressed {
+        background: qlineargradient(
+            x1:0, y1:0, x2:0, y2:1,
+            stop:0 #2f6aad,
+            stop:1 #265a93
+        );
+    }
+
+    QPushButton:focus {
+        border: 1px solid #88c0ff;
+    }
+
+    QLineEdit {
+        background: qlineargradient(
+            x1:0, y1:0, x2:0, y2:1,
+            stop:0 rgba(60, 60, 60, 0.8),
+            stop:1 rgba(50, 50, 50, 0.8)
+        );
+        color: #ffffff;
+        padding: 6px 8px;
+        border: 1px solid #5a5a5a;
+        border-radius: 6px;
+        selection-background-color: #4a90e2;
+        selection-color: #ffffff;
+    }
+
+    QLineEdit:focus {
+        border: 1px solid #88c0ff;
+        background: qlineargradient(
+            x1:0, y1:0, x2:0, y2:1,
+            stop:0 rgba(70, 70, 70, 0.9),
+            stop:1 rgba(60, 60, 60, 0.9)
+        );
+    }
+""")
+
+
         layout = QVBoxLayout()
 
         self.label = QLabel('Encrypt/Decrypt Text Files or Images using LWE.')
@@ -197,16 +245,45 @@ class LWEEncryptor(QWidget):
     
 
     def get_passphrase(self):
-        dialog = QInputDialog(self)
+        dialog = QDialog(self)
         dialog.setWindowTitle("Passphrase")
-        dialog.setLabelText("Enter passphrase:")
-        dialog.setTextEchoMode(QLineEdit.EchoMode.Password)
-        dialog.resize(400, 150)  # Make the dialog larger (width, height)
+        dialog.resize(400, 150)
 
-        ok = dialog.exec()
+        layout = QVBoxLayout(dialog)
 
-        passphrase = dialog.textValue()
-        return passphrase, ok == QInputDialog.DialogCode.Accepted
+        label = QLabel("Enter passphrase:")
+        layout.addWidget(label)
+
+        line_edit = QLineEdit()
+        line_edit.setEchoMode(QLineEdit.EchoMode.Password)
+        layout.addWidget(line_edit)
+
+        show_checkbox = QCheckBox("Show")
+        layout.addWidget(show_checkbox)
+
+        # Toggle echo mode when checkbox is toggled
+        def toggle_password_visibility(state):
+            if state == Qt.CheckState.Checked.value:
+                line_edit.setEchoMode(QLineEdit.EchoMode.Normal)
+            else:
+                line_edit.setEchoMode(QLineEdit.EchoMode.Password)
+
+        show_checkbox.stateChanged.connect(toggle_password_visibility)
+
+        # OK and Cancel buttons
+        buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        )
+        layout.addWidget(buttons)
+
+        buttons.accepted.connect(dialog.accept)
+        buttons.rejected.connect(dialog.reject)
+
+        # Show dialog
+        result = dialog.exec()
+
+        passphrase = line_edit.text()
+        return passphrase, result == QDialog.DialogCode.Accepted
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
