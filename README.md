@@ -1,6 +1,6 @@
 # LWE Encryptor
 
-A simple file encryption utility using the Learning with Errors (LWE) post-quantum cryptographic algorithm. This application provides a graphical user interface to encrypt/decrypt text files and encode/decode images.
+A simple file encryption utility using the [Learning with Errors](https://en.wikipedia.org/wiki/Learning_with_errors) (LWE) post-quantum cryptographic algorithm. This application provides a graphical user interface to encrypt/decrypt text files and encode/decode images.
 
 ## Features
 
@@ -49,12 +49,34 @@ To run this application, you will need:
     ```bash
     sage main.py
     ```
-2.  Enter a passphrase of the required length (default is 30 characters, as `n*l = 6*5`).
-3.  Use the buttons in the application window to perform the following actions:
-    -   **Encrypt Text File:** Select a text file to encrypt.
-    -   **Decrypt Text File:** Select an encrypted text file to decrypt.
-    -   **Encode Image to Text:** Select an image file to convert into a text file.
-    -   **Decode Text to Image:** Select a text file to convert back into an image.
+### For text encryption
+- Enter a passphrase of the required length to encrypt a text file (default is 30 characters, as `n*l = 6*5`).
+- Select a text file to encrypt (for example `example_plaintext.txt`)
+- Enter the name of the encrypted txt file (for example `encrypted.txt`)
+
+### For image encryption
+- Click on the `Encode Image to Text` button.
+- Select an image (`example_image.jpg`) to encode.
+- Choose a name for the encoded image (for example `encoded_image.txt`)
+- Encrypt `encoded_image.txt` using the same steps as above.
+
+### For text decryption
+- Click on the `Decrypt text File` button.
+- Enter the `same passphrase` used for the encryption of the file.
+- Select the encrypted file (`encrypted.txt`)
+- Choose a name for the retrieved file. You should be able to get the contents of `example_plaintext.txt` back.
+
+### For image decryption
+If you know that the encrypted file is an image,
+- Decrypt the file using the same steps as text decryption (for example, choose `decrypted_image.txt` as the name)
+- Click on the `Decode Text to Image` button.
+- Select the wanted file (`decrypted_image.txt`)
+- Choose a name for your image and you should see the initial image again.
+
+
+## Additional remarks
+- Encryption and decryption might take longer for larger image files.
+- This project has not been tested on Windows yet. It may have issues or fail to run properly.
 
 ## Disclaimer
 
