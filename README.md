@@ -1,0 +1,54 @@
+# LWE Encryptor
+
+A simple file encryption utility using the Learning with Errors (LWE) post-quantum cryptographic algorithm. This application provides a graphical user interface to encrypt/decrypt text files and encode/decode images.
+
+## Features
+
+-   **Text File Encryption:** Encrypt and decrypt text files using an LWE-based cryptosystem.
+-   **Image Encoding:** Encode images into a base64 text format and decode them back to their original image format.
+-   **Passphrase-Based Security:** Uses a user-provided passphrase to generate the secret key for encryption and decryption.
+-   **User-Friendly GUI:** A simple and intuitive interface built with PyQt6.
+
+## How It Works
+
+The core of the application is a public-key cryptosystem based on the **Learning with Errors (LWE)** problem. The cryptographic logic is implemented in `lwe.py` and relies on the **SageMath** library for the necessary mathematical computations.
+
+-   A secret key is generated from a user-provided passphrase.
+-   A corresponding public key is generated from the secret key.
+-   Messages are split into blocks and encrypted using the public key.
+-   The GUI (`main.py`) provides an interface for users to select files, enter their passphrase, and perform the desired operations.
+
+## Dependencies
+
+To run this application, you will need:
+
+-   **SageMath:** This project is built on the SageMath mathematical software system. You must run the script within a Sage environment.
+-   **PyQt6:** The graphical user interface is built using the PyQt6 library.
+
+## Installation
+
+1.  **Install SageMath:**
+    If you do not have SageMath installed, download and install it from the official website: [https://www.sagemath.org/download.html](https://www.sagemath.org/download.html)
+
+2.  **Install PyQt6:**
+    Open a terminal or command prompt and run the following command within the Sage environment to install PyQt6:
+    ```bash
+    sage -pip install PyQt6
+    ```
+
+## Usage
+
+1.  Launch the application by running the `main.py` script using SageMath:
+    ```bash
+    sage main.py
+    ```
+2.  Enter a passphrase of the required length (default is 30 characters, as `n*l = 6*5`).
+3.  Use the buttons in the application window to perform the following actions:
+    -   **Encrypt Text File:** Select a text file to encrypt.
+    -   **Decrypt Text File:** Select an encrypted text file to decrypt.
+    -   **Encode Image to Text:** Select an image file to convert into a text file.
+    -   **Decode Text to Image:** Select a text file to convert back into an image.
+
+## Disclaimer
+
+This is a personal project created for educational and demonstrative purposes. It has not been professionally audited for security and should **not** be used to protect sensitive data in real-world applications.
