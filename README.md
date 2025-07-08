@@ -1,6 +1,6 @@
 # LWE Encryptor
 
-A simple file encryption utility using the [Learning with Errors](https://en.wikipedia.org/wiki/Learning_with_errors) (LWE) post-quantum cryptographic algorithm. This application provides a graphical user interface to encrypt/decrypt text files and encode/decode images.
+A simple file encryption utility using the [Learning with Errors](https://en.wikipedia.org/wiki/Learning_with_errors) (LWE) post-quantum cryptographic algorithm. This application provides a graphical user interface to encrypt/decrypt text files images.
 
 ## Features
 
