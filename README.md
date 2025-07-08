@@ -22,7 +22,7 @@ The core of the application is a public-key cryptosystem based on the **Learning
 
 To run this application, you will need:
 
--   **SageMath:** This project is built on the SageMath mathematical software system. You must run the script within a Sage environment.
+-   **SageMath :** This project is built on the SageMath mathematical software system. You must run the script within a Sage environment.
 -   **PyQt6:** The graphical user interface is built using the PyQt6 library.
 
 ## Installation
@@ -85,6 +85,8 @@ If you know that the encrypted file is an image,
 - This project has not been tested on Windows yet. It may have issues or fail to run properly.
 - Secret passphrase is encapsulated using RSA protocol with fixed safe primes p and q (can be chenged in `lwe.py` method `encapsulate`)
 - Encryption may take longer if `p` and `q` are larger
+- the python version used for developping the app is `python3.13.3`
+- the sagemath version used for developping the app is `SageMath10.6`
 
 ## Disclaimer
 
