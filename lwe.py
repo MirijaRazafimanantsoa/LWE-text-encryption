@@ -118,7 +118,7 @@ class LWE:
         decrypted = self.decrypt_blocks(decyphered_vectors)
         return self.decode_blocks(decrypted).rstrip('~')
 
-    def random_safe_prime(self, bits = 128):
+    def random_safe_prime(self, bits = 10):
         while True:
             q = random_prime(2**(bits-1) - 1, False, 2**(bits-2))
             p = 2*q + 1
@@ -127,7 +127,7 @@ class LWE:
     
     def encapsulate(self, x):
         e =65537
-        p,q = self.random_safe_prime(), self.random_safe_prime()
+        p,q = 887, 983
         n = p*q
         return pow(x,e,n)
 
