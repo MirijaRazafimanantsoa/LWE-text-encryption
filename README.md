@@ -83,6 +83,8 @@ If you know that the encrypted file is an image,
 ## Additional remarks
 - Encryption and decryption might take longer for larger image files.
 - This project has not been tested on Windows yet. It may have issues or fail to run properly.
+- Secret passphrase is encapsulated using RSA protocol with random safe primes p and q (default is 128 bits)
+- Encryption may take longer if `p` and `q` are larger
 
 ## Disclaimer
 
