@@ -49,7 +49,8 @@ To run this application, you will need:
 ```bash
 git clone https://github.com/MirijaRazafimanantsoa/LWE-text-encryption.git
 ```
-or download the `.zip` file
+or download the `.zip` file.
+
 2.  Launch the application in a `Sagemath` environment:
 ```bash
 sage main.py
