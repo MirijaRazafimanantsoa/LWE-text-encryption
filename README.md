@@ -45,10 +45,15 @@ To run this application, you will need:
     ```
 ## Usage
 
-1.  Launch the application by running the `main.py` script using SageMath:
-    ```bash
-    sage main.py
-    ```
+1.  Clone the repository :
+```bash
+git clone https://github.com/MirijaRazafimanantsoa/LWE-text-encryption.git
+```
+or download the `.zip` file
+2.  Launch the application in a `Sagemath` environment:
+```bash
+sage main.py
+```
 ### For text encryption
 - Enter a passphrase of the required length to encrypt a text file (default is 30 characters, as `n*l = 6*5`).
 - Select a text file to encrypt (for example `example_plaintext.txt`)
