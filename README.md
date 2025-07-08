@@ -13,8 +13,8 @@ A simple file encryption utility using the Learning with Errors (LWE) post-quant
 
 The core of the application is a public-key cryptosystem based on the **Learning with Errors (LWE)** problem. The cryptographic logic is implemented in `lwe.py` and relies on the **SageMath** library for the necessary mathematical computations.
 
--   A secret key is generated from a user-provided passphrase.
--   A corresponding public key is generated from the secret key.
+-   A secret key is generated from a user-provided passphrase. Its length should be a composite number (30 by default and can be modified throught the parameters `n` and `l` in `lwe.py`)
+-   A corresponding public key is generated randomly from the secret key.
 -   Messages are split into blocks and encrypted using the public key.
 -   The GUI (`main.py`) provides an interface for users to select files, enter their passphrase, and perform the desired operations.
 
@@ -33,9 +33,16 @@ To run this application, you will need:
 2.  **Install PyQt6:**
     Open a terminal or command prompt and run the following command within the Sage environment to install PyQt6:
     ```bash
-    sage -pip install PyQt6
+    sage -python -m pip install PyQt6
     ```
-
+    If SageMath uses the system Python (for example, if installed via apt on Ubuntu), you can simply use:
+    ```bash
+    pip install pyqt6
+    ```
+    For Arch Based distros, you can use :
+    ```bash
+    sudo pacman -S python-pyqt6
+    ```
 ## Usage
 
 1.  Launch the application by running the `main.py` script using SageMath:
@@ -51,4 +58,4 @@ To run this application, you will need:
 
 ## Disclaimer
 
-This is a personal project created for educational and demonstrative purposes. It has not been professionally audited for security and should **not** be used to protect sensitive data in real-world applications.
+This is a personal project created for educational and demonstrative purposes. It has not been professionally audited for security.
